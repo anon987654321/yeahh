@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Syre Sko - En bærekraftig fottøybedrift med fokus på miljøvennlighet og innovasjon.">
+    <title>Syre Sko Forretningsplan</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900" rel="stylesheet">
+    <style>
+        /* Common style adjustments */
+        body { background-color: #e0f7e0; color: #004d00; font-family: "Poppins", sans-serif; }
+        header { background-color: #004d00; color: #ffffff; padding: 20px; text-align: center; }
+        section { margin: 20px; padding: 20px; background-color: #a3d2a3; border-radius: 10px; }
+        h1, h2 { color: #004d00; }
+        canvas { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Syre Sko - Bærekraftig Fottøy Forretningsplan</h1>
+    </header>
+
+    <!-- Mission Statement -->
+    <section aria-labelledby="mission-statement">
+        <h2 id="mission-statement">Vårt Oppdrag</h2>
+        <p>Å tilby miljøvennlig, innovativt fottøy rettet mot miljøbevisste forbrukere.</p>
+    </section>
+
+    <!-- Financial Projections -->
+    <section aria-labelledby="financial-projections">
+        <h2 id="financial-projections">Finansielle Prognoser</h2>
+        <p>Prognoser viser vekst med en forventet break-even i år 3 og stigende ROI etter år 5.</p>
+        <canvas id="breakEvenChartSko"></canvas>
+        <canvas id="roiProjectionChartSko"></canvas>
+    </section>
+
+    <!-- Milestone Roadmap -->
+    <section aria-labelledby="milestone-roadmap">
+        <h2 id="milestone-roadmap">Milestone Roadmap</h2>
+        <p>Viktige faser i produktutvikling, testing, markedsføring og distribusjon.</p>
+        <canvas id="milestoneChartSko"></canvas>
+    </section>
+
+    <!-- Competitive Analysis -->
+    <section aria-labelledby="competitive-analysis">
+        <h2 id="competitive-analysis">Konkurranseanalyse</h2>
+        <canvas id="competitiveChartSko"></canvas>
+    </section>
+
+    <!-- Customer Journey -->
+    <section aria-labelledby="customer-journey">
+        <h2 id="customer-journey">Kundereisen</h2>
+        <p>Strategi for å tiltrekke og engasjere miljøbevisste kunder fra bevissthet til kjøp.</p>
+        <canvas id="funnelChartSko"></canvas>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Break-even Chart
+        var ctxBreakEvenSko = document.getElementById('breakEvenChartSko').getContext('2d');
+        new Chart(ctxBreakEvenSko, {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [
+                    { label: 'Kostnader', data: [3000000, 2000000, 1500000, 1000000, 500000], borderColor: 'rgba(255, 99, 132, 1)' },
+                    { label: 'Inntekt', data: [0, 1000000, 2500000, 4000000, 6000000], borderColor: 'rgba(54, 162, 235, 1)' }
+                ]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+
+        // ROI Projection Chart
+        var ctxRoiSko = document.getElementById('roiProjectionChartSko').getContext('2d');
+        new Chart(ctxRoiSko, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{ label: 'ROI (%)', data: [0, 10, 30, 50, 80], backgroundColor: 'rgba(75, 192, 192, 0.2)', borderColor: 'rgba(75, 192, 192, 1)' }]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+
+        // Milestone Chart
+        var ctxMilestoneSko = document.getElementById('milestoneChartSko').getContext('2d');
+        new Chart(ctxMilestoneSko, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Produktutvikling', 'Testing', 'Produksjon', 'Markedsføring', 'Distribusjon'],
+                datasets: [{ label: 'Måneder', data: [6, 4, 8, 5, 3], backgroundColor: 'rgba(75, 192, 192, 0.6)' }]
+            },
+            options: { scales: { x: { beginAtZero: true, stacked: true } } }
+        });
+
+        // Competitive Analysis Chart
+        var ctxCompetitiveSko = document.getElementById('competitiveChartSko').getContext('2d');
+        new Chart(ctxCompetitiveSko, {
+            type: 'radar',
+            data: {
+                labels: ['Miljøvennlighet', 'Holdbarhet', 'Pris', 'Kundetilfredshet'],
+                datasets: [
+                    { label: 'Vårt Produkt', data: [9, 8, 6, 9], backgroundColor: 'rgba(54, 162, 235, 0.2)', borderColor: 'rgba(54, 162, 235, 1)' },
+                    { label: 'Gjennomsnitt Konkurrent', data: [5, 7, 8, 6], backgroundColor: 'rgba(255, 99, 132, 0.2)', borderColor: 'rgba(255, 99, 132, 1)' }
+                ]
+            }
+        });
+
+        // Customer Journey Funnel Chart
+        var ctxFunnelSko = document.getElementById('funnelChartSko').getContext('2d');
+        new Chart(ctxFunnelSko, {
+            type: 'bar',
+            data: {
+                labels: ['Bevissthet', 'Interesse', 'Vurdering', 'Kjøp'],
+                datasets: [{ label: 'Antall Kunder', data: [10000, 7000, 3000, 1500], backgroundColor: 'rgba(75, 192, 192, 0.6)' }]
+            },
+            options: { indexAxis: 'y', scales: { x: { beginAtZero: true } } }
+        });
+    </script>
+</body>
+</html>
+    
