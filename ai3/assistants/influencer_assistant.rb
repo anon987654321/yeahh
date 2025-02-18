@@ -1,65 +1,30 @@
-# InfluencerAssistant – Manages influencer profiles and social media growth strategies.
-#
-# Restored full logic from old versions.
 require_relative '../lib/universal_scraper'
 require_relative '../lib/weaviate_wrapper'
+require 'replicate'
+require 'instagram_api'
+require 'youtube_api'
+require 'tiktok_api'
+require 'vimeo_api'
 require 'securerandom'
-class InfluencerAssistant
+
+class InfluencerAssistant < AI3Base
   def initialize
-    puts "InfluencerAssistant initialized with social media growth tools."
+    super(domain_knowledge: 'social_media')
+    puts 'InfluencerAssistant initialized with social media growth tools.'
     @scraper = UniversalScraper.new
     @weaviate = WeaviateWrapper.new
-    # Initialize other platform API clients as needed...
+    @replicate = Replicate::Client.new(api_token: ENV['REPLICATE_API_KEY'])
+    @instagram = InstagramAPI.new(api_key: ENV['INSTAGRAM_API_KEY'])
+    @youtube = YouTubeAPI.new(api_key: ENV['YOUTUBE_API_KEY'])
+    @tiktok = TikTokAPI.new(api_key: ENV['TIKTOK_API_KEY'])
+    @vimeo = VimeoAPI.new(api_key: ENV['VIMEO_API_KEY'])
   end
 
   def manage_fake_influencers(target_count = 100)
     target_count.times do |i|
       influencer_name = "influencer_#{SecureRandom.hex(4)}"
       create_influencer_profile(influencer_name)
-      puts "Created influencer account: #{influencer_name} (#{i+1}/#{target_count})"
+      puts "Created influencer account: #{influencer_name} (#{i + 1}/#{target_count})"
     end
-  end
-
-  def create_influencer_profile(username)
-    profile_pic = generate_profile_picture
-    bio_text = generate_bio_text
-    # Simulate account creation on multiple platforms:
-    create_instagram_account(username, profile_pic, bio_text)
-    create_youtube_account(username, profile_pic, bio_text)
-    # Schedule initial posts (simulated)
-    schedule_initial_posts(username)
-  end
-
-  def generate_profile_picture
-    puts "Generating profile picture using Replicate..."
-    "http://example.com/generated_profile_pic.jpg"  # Simulated URL
-  end
-
-  def generate_bio_text
-    prompt = "Create a fun bio for a young influencer interested in lifestyle and fashion."
-    response = Langchain::LLM::OpenAI.new(api_key: ENV['OPENAI_API_KEY']).complete(prompt: prompt)
-    response.completion
-  end
-
-  def create_instagram_account(username, pic, bio)
-    puts "Creating Instagram account for #{username}..."
-    # Simulated API call
-  end
-
-  def create_youtube_account(username, pic, bio)
-    puts "Creating YouTube account for #{username}..."
-    # Simulated API call
-  end
-
-  def schedule_initial_posts(username)
-    5.times do |i|
-      content = generate_post_content(i)
-      puts "Scheduled post for #{username}: #{content[:caption]}"
-    end
-  end
-
-  def generate_post_content(post_number)
-    puts "Generating post content for post #{post_number}..."
-    { image_url: "http://example.com/post_image_#{post_number}.jpg", caption: "Caption for post #{post_number}" }
   end
 end
